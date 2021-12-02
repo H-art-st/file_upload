@@ -1,0 +1,59 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha512-pax4MlgXjHEPfCwcJLQhigY7+N8rt6bVvWLFyUMuxShv170X53TRzGPmPkZmGBhk+jikR8WBM4yl7A9WMHHqvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+	Filevalidation = () => {
+		const fi = document.getElementById('file');
+		// Check if any file is selected.
+		if (fi.files.length > 0) {
+			for (const i = 0; i <= fi.files.length - 1; i++) {
+
+				const fsize = fi.files.item(i).size;
+				const file = Math.round((fsize / 1024));
+				// The size of the file.
+				if (file >= 4096) {
+					alert(
+						"File too Big, please select a file less than 4mb");
+				} else {
+					res.redirect('/');
+
+				}
+			}
+		}
+	}
+
+</script>
+<script>
+	function fileValidation() {
+		var fileInput = 
+			document.getElementById('file');
+		  
+		var filePath = fileInput.value;
+	  
+		// Allowing file type
+		var allowedExtensions = 
+				/(\.jpg|\.jpeg|\.png|\.gif)$/i;
+		  
+		if (!allowedExtensions.exec(filePath)) {
+			alert('Invalid file type');
+			fileInput.value = '';
+			return false;
+		} 
+		else 
+		{
+		  
+			// Image preview
+			if (fileInput.files && fileInput.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					document.getElementById(
+						'imagePreview').innerHTML = 
+						'<img src="' + e.target.result
+						+ '"/>';
+				};
+				  
+				reader.readAsDataURL(fileInput.files[0]);
+			}
+		}
+	}
+</script>   
+</body>
+</html>
